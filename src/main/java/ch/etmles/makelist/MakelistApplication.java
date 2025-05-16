@@ -1,13 +1,13 @@
-package ch.etmles.payroll;
+package ch.etmles.makelist;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PayrollApplication {
+public class MakelistApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PayrollApplication.class, args);
+		SpringApplication.run(MakelistApplication.class, args);
 	}
 
 }

@@ -1,7 +1,8 @@
-package ch.etmles.payroll.Repositories;
+package ch.etmles.makelist.Repositories;
 
-import ch.etmles.payroll.Entities.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import ch.etmles.makelist.Entities.Employee;
 
 public interface EmployeeRepository extends JpaRepository<Employee, Long>{
 

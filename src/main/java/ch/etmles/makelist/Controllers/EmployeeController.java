@@ -1,8 +1,9 @@
-package ch.etmles.payroll.Controllers;
+package ch.etmles.makelist.Controllers;
 
-import ch.etmles.payroll.Entities.Employee;
-import ch.etmles.payroll.Repositories.EmployeeRepository;
 import org.springframework.web.bind.annotation.*;
+
+import ch.etmles.makelist.Entities.Employee;
+import ch.etmles.makelist.Repositories.EmployeeRepository;
 
 import java.util.List;
 

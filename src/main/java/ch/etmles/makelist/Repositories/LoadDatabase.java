@@ -1,11 +1,12 @@
-package ch.etmles.payroll.Repositories;
+package ch.etmles.makelist.Repositories;
 
-import ch.etmles.payroll.Entities.Employee;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import ch.etmles.makelist.Entities.Employee;
 
 @Configuration
 public class LoadDatabase {

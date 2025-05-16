@@ -1,9 +1,9 @@
 @startuml
 actor EndUserAPI
-participant "APIGateway : Microservice" as APIGateway
-participant "BE-Tierlists : Microservice" as BackendLists
-participant "BE-TierlistItems : Microservice" as BackendItems
-participant "MySQL\nDataBaseEngine : Microservice" as MySQL
+participant "APIGateway" as APIGateway
+participant "BE-Tierlists" as BackendLists
+participant "BE-TierlistItems" as BackendItems
+participant "MySQL\nDataBaseEngine" as MySQL
 
 EndUserAPI -> APIGateway : HTTP 8000
 APIGateway -> BackendLists : GET /tierlists/id
