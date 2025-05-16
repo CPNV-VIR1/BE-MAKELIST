@@ -1,0 +1,24 @@
+services:
+  db-engine:
+    image: mysql:9.3
+    container_name: db-engine
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: Makelist
+      MYSQL_USER: cpnv
+      MYSQL_PASSWORD: 1234
+    volumes:
+      - db-engine:/var/lib/mysql
+    networks:
+      - backend-network
+      - db-network
+    restart: unless-stopped
+
+networks:
+  backend-network:
+    driver: bridge
+  db-network:
+    driver: bridge
+
+volumes:
+  db-engine:
