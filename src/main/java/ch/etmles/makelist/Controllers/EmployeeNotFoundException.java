@@ -1,4 +1,4 @@
-package ch.etmles.payroll.Controllers;
+package ch.etmles.makelist.Controllers;
 
 public class EmployeeNotFoundException extends RuntimeException{
 
