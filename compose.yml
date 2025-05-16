@@ -5,11 +5,22 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
-      # depends_on:
-      # - be-tierlists
-      # - be-tierlistitems
+    depends_on:
+      - be-tierlists
+      - be-tierlistitems
     networks:
       - public-network
+      - backend-network
+  be-tierlists:
+    hostname: mock-be-tierlists
+    image: ealen/echo-server
+    networks:
+      - backend-network
+  be-tierlistitems:
+    hostname: mock-be-tierlistitems
+    image: ealen/echo-server
+    networks:
+      - backend-network
 
 networks:
   public-network:
