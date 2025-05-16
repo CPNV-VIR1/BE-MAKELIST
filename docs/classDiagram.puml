@@ -5,56 +5,91 @@ skinparam classAttributeIconSize 0
 'packages
 package "Controllers"
 {
-    class EmployeeController {
-            - repository: EmployeeRepository
-            + EmployeeController(repository: EmployeeRepository)
-            + all(): List<Employee>
-            + newEmployee(newEmployee: Employee): Employee
-            + one(id: Long): Employee
-            + replaceEmployee(newEmployee: Employee, id: Long): Employee
-            + deleteEmployee(id: Long): void
-        }
+    class TierListController {
+        - repository: TierListRepository
+        + TierListController(repository: TierListRepository)
+        + all(): List<TierList>
+        + newTierList(newTierList: TierList): TierList
+        + one(id: Long): TierList
+        + updateTierList(newTierList: TierList, id: Long): TierList
+        + deleteTierList(id: Long): void
+    }
         
-        class EmployeeNotFoundAdvice {
-            + employeeNotFoundHandler(ex: EmployeeNotFoundException): String
-        }
+    class TierListNotFoundAdvice {
+        + TierListNotFoundHandler(ex: TierListNotFoundException): String
+    }
 
-        class EmployeeNotFoundException {
-            + EmployeeNotFoundException(id: Long)
-        }
+    class TierListNotFoundException {
+        + TierListNotFoundException(id: Long)
+    }
+
+    class TierListItemController {
+        - repository: TierListItemRepository
+        + TierListItemController(repository: TierListItemRepository)
+        + all(TierListId: Long): List<TierListItem>
+        + newTierListItem(newTierListItem: TierListItem, TierListId: Long): TierListItem
+        + one(id: Long): TierListItem
+        + updateTierListItem(newTierListItem: TierListItem, id: Long): TierListItem
+        + deleteTierListItem(id: Long): void
+    }
+        
+    class TierListItemNotFoundAdvice {
+        + TierListItemNotFoundHandler(ex: TierListItemNotFoundException): String
+    }
+
+    class TierListItemNotFoundException {
+        + TierListItemNotFoundException(id: Long)
+    }
 }
 
 package "Entities"
 {
-    class Employee {
-            ' - id: Long
-            ' - name: String
-            ' - role: String
-            + Employee()
-            + Employee(name: String, role: String)
-            + <get,set>Id(): Long
-            + <get,set>Name(): String
-            + <get,set>Role(): String
-            + equals(o: Object): boolean
-            + hashCode(): int
-            + toString(): String
-        }
+    class TierList {
+        - id: Long
+        - title: String
+        - items: List<TierListItem>
+        + TierList(title: String)
+        + TierList(title: String, items: List<TierListItem>)
+        + <get,set>Id(): Long
+        + <get,set>Title(): String
+        + <get,set>Items(): List<TierListItem>
+    }
+
+    class TierListItem {
+        - id: Long
+        - text: String
+        - rank: Short
+        - TierList: TierList
+        + TierListItem(text: String, TierList: TierList)
+        + TierList(text: String, TierList: TierList, rank: Short)
+        + <get,set>Id(): Long
+        + <get,set>Text(): String
+        + <get,set>Rank(): Short
+        + <get,set>TierList(): TierList
+    }
+
+    TierList "1" o-- "0..*" TierListItem
 }
 
 package "Repositories"
 {
-    interface EmployeeRepository{}
+    interface TierListRepository{}
+    interface TierListItemRepository{}
 
-    ' class LoadDatabase {
-        ' +initDatabase(repository: EmployeeRepository): CommandLineRunner
-    ' }
+    class LoadDatabase {
+        +initDatabase(repository: TierListRepository): CommandLineRunner
+    }
 }
 
 'relations
-EmployeeController --> Employee
-EmployeeController --> EmployeeRepository
+TierListController --> TierList
+TierListController --> TierListRepository
+TierListController ..> TierListNotFoundException : throws
+TierListNotFoundAdvice --> TierListNotFoundException
 
-EmployeeController ..> EmployeeNotFoundException : throws
-EmployeeNotFoundAdvice --> EmployeeNotFoundException
+TierListItemController --> TierListItem
+TierListItemController --> TierListItemRepository
+TierListItemController ..> TierListItemNotFoundException : throws
+TierListItemNotFoundAdvice --> TierListItemNotFoundException
 
 @enduml
