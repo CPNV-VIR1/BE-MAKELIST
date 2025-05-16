@@ -1,0 +1,60 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+'packages
+package "Controllers"
+{
+    class EmployeeController {
+            - repository: EmployeeRepository
+            + EmployeeController(repository: EmployeeRepository)
+            + all(): List<Employee>
+            + newEmployee(newEmployee: Employee): Employee
+            + one(id: Long): Employee
+            + replaceEmployee(newEmployee: Employee, id: Long): Employee
+            + deleteEmployee(id: Long): void
+        }
+        
+        class EmployeeNotFoundAdvice {
+            + employeeNotFoundHandler(ex: EmployeeNotFoundException): String
+        }
+
+        class EmployeeNotFoundException {
+            + EmployeeNotFoundException(id: Long)
+        }
+}
+
+package "Entities"
+{
+    class Employee {
+            ' - id: Long
+            ' - name: String
+            ' - role: String
+            + Employee()
+            + Employee(name: String, role: String)
+            + <get,set>Id(): Long
+            + <get,set>Name(): String
+            + <get,set>Role(): String
+            + equals(o: Object): boolean
+            + hashCode(): int
+            + toString(): String
+        }
+}
+
+package "Repositories"
+{
+    interface EmployeeRepository{}
+
+    ' class LoadDatabase {
+        ' +initDatabase(repository: EmployeeRepository): CommandLineRunner
+    ' }
+}
+
+'relations
+EmployeeController --> Employee
+EmployeeController --> EmployeeRepository
+
+EmployeeController ..> EmployeeNotFoundException : throws
+EmployeeNotFoundAdvice --> EmployeeNotFoundException
+
+@enduml
