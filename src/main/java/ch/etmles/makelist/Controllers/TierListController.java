@@ -4,6 +4,9 @@ import org.springframework.web.bind.annotation.*;
 
 import ch.etmles.makelist.Entities.TierList;
 import ch.etmles.makelist.Repositories.TierListRepository;
+import ch.etmles.makelist.clients.TierListItemClient;
+import ch.etmles.makelist.dtos.TierListItemDTO;
+import ch.etmles.makelist.dtos.TierListResponse;
 
 import java.util.List;
 
@@ -11,9 +14,11 @@ import java.util.List;
 public class TierListController {
 
     private final TierListRepository repository;
+    private final TierListItemClient tierListItemClient;
 
-    TierListController(TierListRepository repository){
+    TierListController(TierListRepository repository, TierListItemClient tierListItemClient){
         this.repository = repository;
+        this.tierListItemClient = tierListItemClient;
     }
 
     /* curl sample :
@@ -38,9 +43,13 @@ public class TierListController {
     curl -i localhost:8080/tierlists/1
     */
     @GetMapping("/tierlists/{id}")
-    TierList one(@PathVariable Long id){
-        return repository.findById(id)
+    public TierListResponse one(@PathVariable Long id){
+        TierList tierList = repository.findById(id)
                 .orElseThrow(() -> new TierListNotFoundException(id));
+        
+        List<TierListItemDTO> items = tierListItemClient.getItemsForTierList(id);
+
+        return new TierListResponse(tierList.getId(), tierList.getTitle(), items);
     }
 
     /* curl sample :
