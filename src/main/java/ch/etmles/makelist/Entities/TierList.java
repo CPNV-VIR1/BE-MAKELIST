@@ -11,6 +11,8 @@ public class TierList {
     @GeneratedValue Long id;
     private String title;
 
+    public TierList(){}
+
     public TierList(String title){
         this.setTitle(title);
     }
