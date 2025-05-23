@@ -47,28 +47,23 @@ package "Entities"
     class TierList {
         - id: Long
         - title: String
-        - items: List<TierListItem>
         + TierList(title: String)
-        + TierList(title: String, items: List<TierListItem>)
         + <get,set>Id(): Long
         + <get,set>Title(): String
-        + <get,set>Items(): List<TierListItem>
     }
 
     class TierListItem {
         - id: Long
         - text: String
         - rank: Short
-        - TierList: TierList
-        + TierListItem(text: String, TierList: TierList)
-        + TierList(text: String, TierList: TierList, rank: Short)
+        - tierListId: Long
+        + TierListItem(text: String, tierListId: Long)
+        + TierList(text: String, tierList: Long, rank: Short)
         + <get,set>Id(): Long
         + <get,set>Text(): String
         + <get,set>Rank(): Short
-        + <get,set>TierList(): TierList
+        + <get,set>TierListId(): Long
     }
-
-    TierList "1" o-- "0..*" TierListItem
 }
 
 package "Repositories"
