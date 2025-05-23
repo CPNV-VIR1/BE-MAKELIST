@@ -17,38 +17,38 @@ public class TierListController {
     }
 
     /* curl sample :
-    curl -i localhost:8080/TierLists
+    curl -i localhost:8080/tierlists
     */
-    @GetMapping("/TierLists")
+    @GetMapping("/tierlists")
     List<TierList> all(){
         return repository.findAll();
     }
 
     /* curl sample :
-    curl -i -X POST localhost:8080/TierLists ^
+    curl -i -X POST localhost:8080/tierlists ^
         -H "Content-type:application/json" ^
         -d "{\"title\": \"Awesome tier list!\"}"
     */
-    @PostMapping("/TierLists")
+    @PostMapping("/tierlists")
     TierList newTierList(@RequestBody TierList newTierList){
         return repository.save(newTierList);
     }
 
     /* curl sample :
-    curl -i localhost:8080/TierLists/1
+    curl -i localhost:8080/tierlists/1
     */
-    @GetMapping("/TierLists/{id}")
+    @GetMapping("/tierlists/{id}")
     TierList one(@PathVariable Long id){
         return repository.findById(id)
                 .orElseThrow(() -> new TierListNotFoundException(id));
     }
 
     /* curl sample :
-    curl -i -X PUT localhost:8080/TierLists/2 ^
+    curl -i -X PUT localhost:8080/tierlists/2 ^
         -H "Content-type:application/json" ^
         -d "{\"title\": \"My updated tier list!\"}"
      */
-    @PutMapping("/TierLists/{id}")
+    @PutMapping("/tierlists/{id}")
     TierList updateTierList(@RequestBody TierList newTierList, @PathVariable Long id) {
         return repository.findById(id)
                 .map(tierList -> {
@@ -62,9 +62,9 @@ public class TierListController {
     }
 
     /* curl sample :
-    curl -i -X DELETE localhost:8080/TierLists/2
+    curl -i -X DELETE localhost:8080/tierlists/2
     */
-    @DeleteMapping("/TierLists/{id}")
+    @DeleteMapping("/tierlists/{id}")
     void deleteTierList(@PathVariable Long id){
         repository.deleteById(id);
     }
