@@ -6,17 +6,17 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import ch.etmles.makelist.Entities.Employee;
+import ch.etmles.makelist.Entities.TierList;
 
 @Configuration
 public class LoadDatabase {
     private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
     @Bean
-    CommandLineRunner initDatabase(EmployeeRepository repository){
+    CommandLineRunner initDatabase(TierListRepository repository){
         return args->{
-            log.info("Preloading " + repository.save(new Employee("Bilbo Baggins", "burglar")));
-            log.info("Preloading " + repository.save(new Employee("Frodo Baggins", "thief")));
+            log.info("Preloading " + repository.save(new TierList("Awesome tier list!")));
+            log.info("Preloading " + repository.save(new TierList("Best vegetables")));
         };
     }
 }
