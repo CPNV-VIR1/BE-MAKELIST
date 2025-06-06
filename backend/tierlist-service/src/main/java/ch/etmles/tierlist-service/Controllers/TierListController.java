@@ -22,7 +22,7 @@ public class TierListController {
     }
 
     /* curl sample :
-    curl -i localhost:8080/tierlists
+    curl -i localhost:8000/api/tierlists
     */
     @GetMapping("/tierlists")
     List<TierList> all(){
@@ -30,7 +30,7 @@ public class TierListController {
     }
 
     /* curl sample :
-    curl -i -X POST localhost:8080/tierlists ^
+    curl -i -X POST localhost:8000/api/tierlists ^
         -H "Content-type:application/json" ^
         -d "{\"title\": \"Awesome tier list!\"}"
     */
@@ -40,7 +40,7 @@ public class TierListController {
     }
 
     /* curl sample :
-    curl -i localhost:8080/tierlists/1
+    curl -i localhost:8000/api/tierlists/1
     */
     @GetMapping("/tierlists/{id}")
     public TierListResponse one(@PathVariable Long id){
@@ -53,7 +53,7 @@ public class TierListController {
     }
 
     /* curl sample :
-    curl -i -X PUT localhost:8080/tierlists/2 ^
+    curl -i -X PUT localhost:8000/api/tierlists/2 ^
         -H "Content-type:application/json" ^
         -d "{\"title\": \"My updated tier list!\"}"
      */
@@ -71,7 +71,7 @@ public class TierListController {
     }
 
     /* curl sample :
-    curl -i -X DELETE localhost:8080/tierlists/2
+    curl -i -X DELETE localhost:8000/api/tierlists/2
     */
     @DeleteMapping("/tierlists/{id}")
     void deleteTierList(@PathVariable Long id){

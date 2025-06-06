@@ -17,7 +17,7 @@ public class TierListItemController {
     }
 
     /* curl sample :
-    curl -i localhost:8080/tierlists/1/items
+    curl -i localhost:8000/api/tierlists/1/items
     */
     @GetMapping("/tierlists/{id}/items")
     List<TierListItem> all(@PathVariable("id") Long tierListId){
