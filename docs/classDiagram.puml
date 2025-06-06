@@ -54,14 +54,14 @@ package "Entities"
 
     class TierListItem {
         - id: Long
-        - text: String
-        - rank: Short
+        - description: String
+        - ranking: Short
         - tierListId: Long
-        + TierListItem(text: String, tierListId: Long)
-        + TierList(text: String, tierList: Long, rank: Short)
+        + TierListItem(description: String, tierListId: Long)
+        + TierList(description: String, tierList: Long, ranking: Short)
         + <get,set>Id(): Long
-        + <get,set>Text(): String
-        + <get,set>Rank(): Short
+        + <get,set>Description(): String
+        + <get,set>Ranking(): Short
         + <get,set>TierListId(): Long
     }
 }

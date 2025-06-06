@@ -1,4 +1,4 @@
-package ch.etmles.makelist.Controllers;
+package ch.etmles.tierlistitemservice.Controllers;
 
 public class TierListItemNotFoundException extends RuntimeException{
 

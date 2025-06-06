@@ -1,9 +1,9 @@
-package ch.etmles.makelist.Controllers;
+package ch.etmles.tierlistitemservice.Controllers;
 
 import org.springframework.web.bind.annotation.*;
 
-import ch.etmles.makelist.Entities.TierListItem;
-import ch.etmles.makelist.Repositories.TierListItemRepository;
+import ch.etmles.tierlistitemservice.Entities.TierListItem;
+import ch.etmles.tierlistitemservice.Repositories.TierListItemRepository;
 
 import java.util.List;
 
