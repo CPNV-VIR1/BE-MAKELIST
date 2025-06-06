@@ -2,7 +2,7 @@
 
 ## Description
 
-A Spring-based application designed to create and manage tier lists.
+A Spring-based microseervice application designed to create and manage tier lists.
 
 ## Getting Started
 
@@ -12,22 +12,34 @@ A Spring-based application designed to create and manage tier lists.
 * **Java Version:** 17
 * **IDE:** Visual studio code
 * **Package Manager:** Apache Maven 3.9.9
+* **Docker & Docker Compose:** Latest stable version
 
 ## Deployment
 
 ### On dev environment
 
-1. Clone the repository
+1. Clone the repository:
 
 ```
   git clone https://github.com/CPNV-VIR1/BE-MAKELIST.git
   cd BE-MAKELIST
 ```
-2. Install the dependencies and run the project with the following command
+2. Build the project JAR files:
 
 ```
-   mvn clean spring-boot:run
+   cd ./backend/tierlist-service/
+   mvn clean package
 ```
+
+Do this for all of the backend services.
+
+3. Start the full stack using Docker Compose:
+
+```
+   docker compose up --build
+```
+
+You can now access the services through http://localhost:8000 via the API gateway.
 
 ## Testing
 
@@ -42,28 +54,22 @@ Run tests with:
 ## Directory structure
 
 ```shell
+├───api-gateway
+│   └───nginx.conf
+├───backend
+│   ├───tierlist-service
+│   └───tierlistitem-service
+├───.env
+├───.gitignore
+├───compose.yml
 ├───docs
-├───src
-│   ├───main
-│   │   ├───java
-│   │   │   └───ch
-│   │   │       └───etmles
-│   │   │           └───makelist
-│   │   │               ├───Controllers    
-│   │   │               ├───Entities       
-│   │   │               └───Repositories
-│   │   └───resources
-│   └───test
-│       └───java
-│           └───ch
-│               └───etmles
-│                   └───makelist
+└───README.md
 ```
 
 ## Collaborate
 
-- If you found an issue, want to request different functionality or other, please create an issue on GitHub.
-- If you want to add new features yourself, please create a pull request.
+- Found an issue? Create a GitHub Issue.
+- Want to contribute a feature? Open a Pull Request.
 - There are no specific guidelines for contributing to this project.
 
 ## Contact
